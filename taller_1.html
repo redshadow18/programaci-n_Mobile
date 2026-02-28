@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intranet · Tecnoteinco</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(145deg, #eef2f7 0%, #f8fafc 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .intranet-card {
+      max-width: 950px;
+      width: 100%;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 3rem 3rem 2rem 2rem;
+      box-shadow: 0 25px 45px -12px rgba(0,20,40,0.25), 
+                  inset 0 1px 2px rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.5);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    /* header con ola */
+    .hero-header {
+      background: #0b2b44;
+      background-image: radial-gradient(circle at 20% 30%, #1c4b6e, #082032);
+      padding: 2.8rem 2rem 1.8rem 2rem;
+      position: relative;
+      color: white;
+    }
+
+    .hero-header h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero-header h1 i {
+      background: #f5b042;
+      color: #0b2b44;
+      padding: 0.6rem;
+      border-radius: 50%;
+      font-size: 2rem;
+      box-shadow: 0 8px 18px #00000030;
+    }
+
+    .wave-decoration {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      line-height: 0;
+    }
+
+    .wave-decoration svg {
+      display: block;
+      width: 100%;
+      height: 50px;
+      fill: rgba(255,255,255,0.75);
+    }
+
+    /* contenido principal */
+    .content {
+      padding: 2.8rem 2.5rem 3rem 2.5rem;
+    }
+
+    .description {
+      background: #ffffffd9;
+      padding: 2rem 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 10px 20px -8px rgba(0,20,40,0.15);
+      border: 1px solid white;
+      margin-bottom: 2.5rem;
+      text-align: left;
+    }
+
+    .description p {
+      font-size: 1.25rem;
+      color: #1f3a4f;
+      font-weight: 450;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .description i {
+      color: #f5b042;
+      font-size: 2rem;
+      width: 2.5rem;
+    }
+
+    .team-section {
+      margin-top: 2rem;
+    }
+
+    .team-section h2 {
+      font-size: 2rem;
+      font-weight: 550;
+      color: #0b2b44;
+      margin-bottom: 1.8rem;
+      border-left: 10px solid #f5b042;
+      padding-left: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .member-card {
+      background: white;
+      padding: 1.8rem 1.5rem;
+      border-radius: 2rem;
+      text-align: center;
+      box-shadow: 0 15px 30px -10px rgba(0,30,50,0.15);
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255,255,255,0.8);
+      backdrop-filter: blur(4px);
+    }
+
+    .member-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 40px -10px #0b2b4440;
+      border-color: #f5b04280;
+    }
+
+    .avatar {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(145deg, #1c4b6e, #103349);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem auto;
+      box-shadow: 0 12px 18px -6px #0a1f2e;
+    }
+
+    .avatar i {
+      font-size: 3.2rem;
+      color: #f5b042;
+      filter: drop-shadow(2px 4px 4px #00000030);
+    }
+
+    .member-card h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #0b2b44;
+      margin-bottom: 0.5rem;
+    }
+
+    .member-role {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #607d8b;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .member-email {
+      background: #ecf3f9;
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1d4f73;
+      border: 1px solid #bdd3e4;
+      transition: 0.2s;
+    }
+
+    .member-email i {
+      font-size: 1rem;
+      color: #f09b2c;
+    }
+
+    .member-email:hover {
+      background: #d4e3f0;
+      border-color: #f5b042;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      color: #5f7d98;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #dde9f3a0;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      backdrop-filter: blur(2px);
+    }
+
+    .footer-note i {
+      color: #f5b042;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px dashed #b3cbd9;
+      margin: 1.2rem 0 0 0;
+      opacity: 0.5;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .hero-header h1 { font-size: 2rem; }
+      .content { padding: 1.8rem; }
+      .team-grid { grid-template-columns: 1fr; }
+      .description p { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="intranet-card">
+    <div class="hero-header">
+      <h1>
+        <i class="fas fa-users-gear"></i> 
+        intranet · tecnoteinco
+      </h1>
+      <!-- onda decorativa inferior -->
+      <div class="wave-decoration">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".3"></path>
+          <path d="M0,0V15.81C13,21.25,27.93,25.67,44.24,28.45c69.76,11.2,137.52-7.38,206.69-18.13C330.55,0.53,404.44,26.82,473,45.57c68.78,18.66,134.8,29.55,203.35,15.48,35.05-7.19,70.47-18.79,105.64-30.43C894.62,8.53,1113-8.26,1200,25.2V0Z" opacity=".5"></path>
+          <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- mensaje principal -->
+      <div class="description">
+        <p>
+          <i class="fas fa-hard-hat"></i> 
+          <span><strong>Somos un equipo de ingenieros</strong> asignados al proyecto Tecnoteinco. Innovación, compromiso y tecnología al servicio de la educación.</span>
+        </p>
+      </div>
+
+      <!-- equipo (nombres) -->
+      <div class="team-section">
+        <h2><i class="fas fa-user-astronaut" style="font-size: 1.8rem; margin-right: 0.5rem;"></i> Nombres · equipo</h2>
+        <div class="team-grid" id="teamGrid">
+          <!-- Las tarjetas se generan con js (pero dejamos un fallback) -->
+        </div>
+      </div>
+
+      <!-- pie de página con correo institucional genérico -->
+      <div class="footer-note">
+        <i class="fas fa-envelope-open-text"></i> 
+        <span><strong>@teinco.edu.co</strong> · dominio institucional</span>
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <hr>
+      <p style="margin-top: 1.2rem; font-size: 0.8rem; opacity: 0.7; text-align: center;">
+        <i class="fas fa-copyright"></i> Tecnoteinco intranet · ingeniería en acción
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Base de datos del equipo (nombre y especialidad) 
+      const teamMembers = [
+        { name: 'Valentina', role: 'coordinadora de proyectos', email: 'valentina.p' },
+        { name: 'Santiago', role: 'desarrollador fullstack', email: 'santiago.r' },
+        { name: 'Camila', role: 'ingeniera civil', email: 'camila.m' },
+        { name: 'Andrés', role: 'especialista en IA', email: 'andres.f' },
+        { name: 'Laura', role: 'diseñadora industrial', email: 'laura.g' },
+        { name: 'Felipe', role: 'soporte técnico', email: 'felipe.j' }
+      ];
+
+      const container = document.getElementById('teamGrid');
+      if (!container) return;
+
+      // Limpiar solo si queremos reemplazar, pero está vacío por defecto (innerHTML lo llenamos)
+      container.innerHTML = ''; 
+
+      teamMembers.forEach(member => {
+        // Crear la tarjeta
+        const card = document.createElement('div');
+        card.className = 'member-card';
+
+        // Avatar con ícono (diferente según género o solo aleatorio; usaremos uno fijo por simplicidad, pero podríamos variar)
+        const avatarIcon = document.createElement('div');
+        avatarIcon.className = 'avatar';
+        avatarIcon.innerHTML = `<i class="fas fa-user-tie"></i>`;  // mismo para todos, se ve formal
+
+        const h3 = document.createElement('h3');
+        h3.textContent = member.name;
+
+        const roleDiv = document.createElement('div');
+        roleDiv.className = 'member-role';
+        roleDiv.textContent = member.role;
+
+        const emailLink = document.createElement('a');
+        emailLink.className = 'member-email';
+        emailLink.href = `mailto:${member.email}@teinco.edu.co`;
+        emailLink.innerHTML = `<i class="fas fa-at"></i> ${member.email}@teinco.edu.co`;
+
+        // armar
+        card.appendChild(avatarIcon);
+        card.appendChild(h3);
+        card.appendChild(roleDiv);
+        card.appendChild(emailLink);
+
+        container.appendChild(card);
+      });
+
+      // toque extra: cambiar el ícono de algunos aleatoriamente para que se sienta único (opcional)
+      const avatars = document.querySelectorAll('.member-card .avatar i');
+      const iconOptions = ['fa-user-astronaut', 'fa-user-ninja', 'fa-user-graduate', 'fa-user-tie', 'fa-user-gear', 'fa-user-secret'];
+      avatars.forEach((icon, index) => {
+        const randomIcon = iconOptions[index % iconOptions.length]; // así no es tan aleatorio pero variado
+        icon.className = `fas ${randomIcon}`;
+      });
+    })();
+  </script>
+</body>
+</html>
